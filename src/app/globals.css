@@ -1,26 +1,212 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand: #510a9b;
+  --purple: #510a9b;
+  --purple-deep: #3d0775;
+  --purple-dark: #2d1148;
+  --yellow: #ffd43b;
+  --yellow-gold: #ffbf00;
+  --pink: #ff66c4;
+  --peach: #ff9f43;
+  --cream: #fff7d6;
+  --cream-soft: #fffdf5;
+  --lavender: #f4e7ff;
+  --white: #ffffff;
+  --text: #2d1148;
+  --background: #fffdf5;
+  --foreground: #2d1148;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand);
+  --color-purple: var(--purple);
+  --color-purple-deep: var(--purple-deep);
+  --color-purple-dark: var(--purple-dark);
+  --color-yellow: var(--yellow);
+  --color-yellow-gold: var(--yellow-gold);
+  --color-pink: var(--pink);
+  --color-peach: var(--peach);
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-lavender: var(--lavender);
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-fredoka);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ffd43b;
+  color: #510a9b;
+}
+
+.font-display {
+  font-family: var(--font-fredoka), var(--font-nunito), system-ui, sans-serif;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-y-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float-y 3.8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-y-slow 5.2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 3s ease-in-out infinite;
+}
+
+.section-title {
+  font-family: var(--font-fredoka), system-ui, sans-serif;
+  font-weight: 700;
+  color: #510a9b;
+  letter-spacing: -0.02em;
+}
+
+.card-soft {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(81, 10, 155, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card-soft:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(81, 10, 155, 0.14);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: #510a9b;
+  color: #fff;
+  font-family: var(--font-fredoka), system-ui, sans-serif;
+  font-weight: 700;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #3d0775;
+  transform: translateY(-1px);
+}
+
+.btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: #ffd43b;
+  color: #1a1a1a;
+  font-family: var(--font-fredoka), system-ui, sans-serif;
+  font-weight: 800;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-yellow:hover {
+  background: #ffbf00;
+  transform: translateY(-1px);
+}
+
+/* Preloader */
+@keyframes preloader-pulse-ring {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes preloader-logo-bob {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.03);
+  }
+}
+
+@keyframes preloader-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.preloader-ring {
+  animation: preloader-pulse-ring 1.6s ease-out infinite;
+}
+
+.preloader-ring-delay {
+  animation: preloader-pulse-ring 1.6s ease-out 0.45s infinite;
+}
+
+.preloader-logo {
+  animation: preloader-logo-bob 1.8s ease-in-out infinite;
+}
+
+.preloader-bar {
+  width: 45%;
+  animation: preloader-bar 1.2s ease-in-out infinite;
 }
